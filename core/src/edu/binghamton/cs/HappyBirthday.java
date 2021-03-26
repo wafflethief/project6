@@ -3,6 +3,7 @@ package edu.binghamton.cs;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
@@ -35,10 +36,9 @@ public class HappyBirthday extends Game {//extends ApplicationAdapter {
 		shapeRenderer = new ShapeRenderer();
 		manager = new AssetManager();
 		setScreen(new InstructionScreen(HappyBirthday.this));
-
 	}
-	/*
-	@Override
+
+	/*@Override
 	public void render () {
 		if(manager.update()){}
 		float progress = manager.getProgress();
@@ -51,12 +51,23 @@ public class HappyBirthday extends Game {//extends ApplicationAdapter {
 		font.getData().setScale(5);
 		font.draw(batch, "Happy Birthday!", Gdx.graphics.getWidth()/4,Gdx.graphics.getHeight()/2);
 		batch.end();
-	}
-	*/
+
+		Gdx.input.setInputProcessor(new InputAdapter(){
+			@Override
+			public boolean keyDown(int keyCode){
+				if(keyCode == Input.Keys.SPACE){
+					HappyBirthday.this.setScreen(new Ballroom(HappyBirthday.this));
+				}
+				return true;
+			}
+		});
+	}*/
+
 	@Override
 	public void dispose () {
 		getScreen().dispose();
 		batch.dispose();
 		img.dispose();
+		font.dispose();
 	}
 }
