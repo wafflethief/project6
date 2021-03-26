@@ -18,6 +18,8 @@ public class InstructionScreen extends ScreenAdapter {
 
     public InstructionScreen(HappyBirthday game){
         this.game = game;
+        this.bmFont = new BitmapFont();
+
         /*this.generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/turtle.ttf"));
         this.parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         this.bmFont = generator.generateFont(parameter);
@@ -26,11 +28,10 @@ public class InstructionScreen extends ScreenAdapter {
     
     @Override
     public void show(){
-
         Gdx.input.setInputProcessor(new InputAdapter(){
             @Override
             public boolean keyDown(int keyCode){
-                if(keyCode == Input.Keys.SPACE){
+                if(keyCode == Input.Keys.B){
                     game.setScreen(new Ballroom(game));
                 }
                 return true;
@@ -42,10 +43,13 @@ public class InstructionScreen extends ScreenAdapter {
     public void render(float delta){
         Gdx.gl.glClearColor(.25f, 0,.25f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        game.rainSound.play();
+
         game.batch.begin();
-        //bmFont.draw(game.batch, text, 10, 10);
-        //game.font.getData().scale(.01f); //CAUSES WEIRD BEHAVIOR
-        game.font.draw(game.batch, "Instructions", Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()/5);
+        //game.font.getData().scale(.1f); //.scale causes zooming in...
+        game.font.getData().setScale(3.5f);
+        game.font.draw(game.batch, "Instructions", Gdx.graphics.getWidth()/6, Gdx.graphics.getHeight());
         game.batch.end();
     }
 

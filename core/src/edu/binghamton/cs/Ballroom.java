@@ -18,7 +18,7 @@ public class Ballroom extends ScreenAdapter {
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean keyDown(int keyCode) {
-                if (keyCode == Input.Keys.ENTER) {
+                if (keyCode == Input.Keys.I) {
                     game.setScreen(new InstructionScreen(game));
                 }
                 return true;
@@ -31,7 +31,13 @@ public class Ballroom extends ScreenAdapter {
         Gdx.gl.glClearColor(.25f, .5f, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
-        game.font.draw(game.batch, "Press enter to restart.", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .25f);
+        game.font.getData().setScale(3);
+        game.font.draw(game.batch, "A ballroom", Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()/4);
         game.batch.end();
+    }
+
+    @Override
+    public void hide(){
+        Gdx.input.setInputProcessor(null);
     }
 }
