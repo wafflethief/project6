@@ -13,18 +13,22 @@ public class TextUI extends Actor {
     FreeTypeFontGenerator generator;
     FreeTypeFontGenerator.FreeTypeFontParameter parameter;
 
-    public TextUI(String text){
+    public TextUI(String text, String fontFile){
         this.font = new BitmapFont();
-        generator = new FreeTypeFontGenerator(Gdx.files.internal("rubik/Rubik-Black.ttf"));
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(fontFile));
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 35;
+        /*parameter.size = 35;
         parameter.borderWidth = 0.5f;
         parameter.borderColor = Color.WHITE;
         parameter.color = Color.CHARTREUSE;
         this.font = generator.generateFont(parameter);
         generator.dispose();
         this.text = text;
-        this.font.getData().setScale(0.4f, 0.4f);
+        this.font.getData().setScale(0.4f, 0.4f);*/
+    }
+
+    public void setFields(int size, float borderWidth, Color borderColor, Color color){
+        
     }
 
     @Override

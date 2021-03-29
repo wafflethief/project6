@@ -22,6 +22,7 @@ public class InstructionScreen extends ScreenAdapter {
     BitmapFont bmFont;
     String text;
     ShapeRenderer border;
+    TextUI tui;
 
 
     public InstructionScreen(HappyBirthday game){
@@ -49,17 +50,22 @@ public class InstructionScreen extends ScreenAdapter {
 
         //game.rainSound.play();
 
+        tui = new TextUI("B - Ballroom\nL - Library(todo)", "rubik/Rubik-Black.ttf");
         game.batch.begin();
         //game.font.getData().scale(.1f); //.scale causes zooming in...
-        game.font.getData().setScale(3.5f);
+        /*game.font.getData().setScale(3.5f);
         //game.font.getData().fontFile(Gdx.files.internal("fonts/black.ttf"));
         game.font.draw(game.batch, "I - Instructions\n" +
                 "B - Ballroom\n"+
-                "L - Library(coming soon)\n", graphics.getWidth()/8, graphics.getHeight()/1.08f);
+                "L - Library(todo)\n", graphics.getWidth()/8f, graphics.getHeight()/1.08f);*/
+        tui.font.getData().setScale(4);
+        tui.draw(game.batch, 1f);
         game.batch.end();
+
+        // draw border
         border.begin(ShapeRenderer.ShapeType.Line);
         border.setColor(Color.WHITE);
-        border.rect(graphics.getWidth()/40, graphics.getHeight()/50, 1010,1000);
+        border.rect(graphics.getWidth()/40f, graphics.getHeight()/50f, 1010,1000);
         border.end();
     }
     @Override

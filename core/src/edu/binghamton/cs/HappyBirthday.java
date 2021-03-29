@@ -44,8 +44,8 @@ public class HappyBirthday extends Game {//extends ApplicationAdapter {
 		img = new Texture("badlogic.jpg");
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		//font = new BitmapFont();
-
+		font = new BitmapFont();
+		/*
 		generator = new FreeTypeFontGenerator(Gdx.files.internal("rubik/Rubik-Black.ttf"));
 		parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 		parameter.size = 35;
@@ -56,7 +56,7 @@ public class HappyBirthday extends Game {//extends ApplicationAdapter {
 		generator.dispose();
 		this.text = text;
 		this.font.getData().setScale(0.4f, 0.4f);
-
+		*/
 		manager = new AssetManager();
 		rainSound = Gdx.audio.newMusic(Gdx.files.internal("raw/zapsplat_rain.mp3"));
 		rainSound.setLooping(true);
@@ -64,24 +64,24 @@ public class HappyBirthday extends Game {//extends ApplicationAdapter {
 		setScreen(new InstructionScreen(HappyBirthday.this));
 	}
 
-	@Override
+	/*@Override
 	public void render () {
 		// allows batch to render using the coordinates
 
 		batch.setProjectionMatrix(camera.combined);
-		/*
-		if(manager.update()){}
-		float progress = manager.getProgress();
-		manager.finishLoading();
 
-		Gdx.gl.glClearColor(204.0f/255.0f, 255.0f/255.0f, 152.0f/255.0f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);*/
+		//if(manager.update()){}
+		//float progress = manager.getProgress();
+		//manager.finishLoading();
+		//Gdx.gl.glClearColor(204.0f/255.0f, 255.0f/255.0f, 152.0f/255.0f, 1);
+		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
 		batch.begin();
 		//batch.draw(img, 0, 0);
 		font.getData().setScale(5);
 		font.draw(batch, "Happy\nBirthday", 50,Gdx.graphics.getHeight() -50);
 		batch.end();
-	}
+	}*/
 
 	@Override
 	public void dispose () {
