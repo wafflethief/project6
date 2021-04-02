@@ -26,9 +26,7 @@ public class Ballroom extends ScreenAdapter {
         this.shapeY = 100;
 
         objects = new ArrayList<Object>();
-        objects.add(new Object(10f, 10f, "raw/lemon.png"));
-        //objects.add(new Object(10f, 10f, "raw/piano.png"));
-        //objects.add(new Object(10f, 10f, "raw/chair.png"));
+
 
     }
 
@@ -71,7 +69,11 @@ public class Ballroom extends ScreenAdapter {
         shapeRenderer.circle(shapeX, shapeY, 50);
         shapeRenderer.end();
 
+        objects.add(new Object(800f, 1700f, "raw/lemon.png", 12f,20f));
+        objects.add(new Object(750f, 1700f, "raw/piano.png", 4f, 6f));
+        //objects.add(new Object(10f, 10f, "raw/chair.png"));
         game.batch.begin();
+
         for (Object o : objects){
             o.render(game.batch);
         }

@@ -11,28 +11,25 @@ public class Object {
     public static final int WIDTH = 3;
     public static final int HEIGHT = 4;
 
-    private static Texture texture;
+    private Texture texture;
     float x, y;
+    float xSize, ySize;
     int width, height;
     CollisionRect rect;
-    Sprite sprite;
 
-    public Object(float x, float y, String imgFile){
+    public Object(float x, float y, String imgFile, float xSize, float ySize){
         this.x = x;
         this.y = y;
-        texture = new Texture(imgFile);
+        this.texture = new Texture(imgFile);
+        this.xSize = xSize;
+        this.ySize = ySize;
         this.rect = new CollisionRect(x, y, WIDTH, HEIGHT);
-        //sprite = new Sprite(new Texture(imgFile));
     }
     public void update(){
         this.rect.move(x, y);
     }
     public void render(SpriteBatch batch){
-        /*sprite.setScale(.2f);
-        sprite.setPosition(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        sprite.draw(batch);*/
-
-        batch.draw(texture, x, y, Gdx.graphics.getWidth()/3f, Gdx.graphics.getHeight()/5f);
+        batch.draw(texture, x, y, Gdx.graphics.getWidth()/xSize, Gdx.graphics.getHeight()/ySize);
     }
 
     public CollisionRect getCollisionRect(){
