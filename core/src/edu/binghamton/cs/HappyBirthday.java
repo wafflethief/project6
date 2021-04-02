@@ -33,6 +33,7 @@ public class HappyBirthday extends Game {//extends ApplicationAdapter {
 	MyTextInputListener listener;
 	TextField textField;
 	Music rainSound;
+	ShapeRenderer shapeRenderer;
 
 	String text;
 	FreeTypeFontGenerator generator;
@@ -58,34 +59,18 @@ public class HappyBirthday extends Game {//extends ApplicationAdapter {
 		this.font.getData().setScale(0.4f, 0.4f);
 		*/
 		manager = new AssetManager();
+		shapeRenderer = new ShapeRenderer();
+
 		rainSound = Gdx.audio.newMusic(Gdx.files.internal("raw/zapsplat_rain.mp3"));
 		rainSound.setLooping(true);
 
 		setScreen(new InstructionScreen(HappyBirthday.this));
 	}
 
-	/*@Override
-	public void render () {
-		// allows batch to render using the coordinates
-
-		batch.setProjectionMatrix(camera.combined);
-
-		//if(manager.update()){}
-		//float progress = manager.getProgress();
-		//manager.finishLoading();
-		//Gdx.gl.glClearColor(204.0f/255.0f, 255.0f/255.0f, 152.0f/255.0f, 1);
-		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		batch.begin();
-		//batch.draw(img, 0, 0);
-		font.getData().setScale(5);
-		font.draw(batch, "Happy\nBirthday", 50,Gdx.graphics.getHeight() -50);
-		batch.end();
-	}*/
-
 	@Override
 	public void dispose () {
 		getScreen().dispose();
+		shapeRenderer.dispose();
 		batch.dispose();
 		img.dispose();
 		font.dispose();

@@ -12,8 +12,10 @@ public class TextUI extends Actor {
     String text;
     FreeTypeFontGenerator generator;
     FreeTypeFontGenerator.FreeTypeFontParameter parameter;
+    float posX;
+    float posY;
 
-    public TextUI(String text, String fontFile){
+    public TextUI(String fontFile){
         this.font = new BitmapFont();
         generator = new FreeTypeFontGenerator(Gdx.files.internal(fontFile));
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -23,16 +25,25 @@ public class TextUI extends Actor {
         parameter.color = Color.CHARTREUSE;
         this.font = generator.generateFont(parameter);
         generator.dispose();
-        this.text = text;
         this.font.getData().setScale(0.4f, 0.4f);*/
     }
 
-    public void setFields(int size, float borderWidth, Color borderColor, Color color){
-        
+    public void setFields(String text, int size, float borderWidth, Color borderColor,
+                          Color color, float scaleX, float scaleY, float posX, float posY){
+        this.text = text;
+        this.parameter.size = size;
+        this.parameter.borderWidth = borderWidth;
+        this.parameter.borderColor = borderColor;
+        this.parameter.color = color;
+        this.font = this.generator.generateFont(parameter); // move to constructor?
+        this.generator.dispose();
+        this.font.getData().setScale(scaleX, scaleY);
+        this.posX = posX;
+        this.posY = posY;
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha){
-        font.draw(batch, text, Gdx.graphics.getWidth()/6, Gdx.graphics.getHeight());
+        font.draw(batch, text, this.posX, this.posY);
     }
 }

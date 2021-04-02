@@ -16,6 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 import java.awt.Shape;
 
 import static com.badlogic.gdx.Gdx.*;
+import static com.badlogic.gdx.Gdx.graphics;
 
 public class InstructionScreen extends ScreenAdapter {
     HappyBirthday game;
@@ -50,22 +51,23 @@ public class InstructionScreen extends ScreenAdapter {
 
         //game.rainSound.play();
 
-        tui = new TextUI("B - Ballroom\nL - Library(todo)", "rubik/Rubik-Black.ttf");
+        // TODO: move all the screen text to text files and read in...
+        text = "\nInstructions: \n" +
+                "B - Ballroom\n" +
+                "L - Library(todo)";
+        float textWidth = graphics.getWidth()/15f;
+        float textHeight =  graphics.getHeight()/1.05f;
+        tui = new TextUI( "rubik/Rubik-Black.ttf");
+        tui.setFields(text, 40, 0.25f, Color.WHITE, Color.CORAL, 1f, 1f, textWidth, textHeight);
+
         game.batch.begin();
-        //game.font.getData().scale(.1f); //.scale causes zooming in...
-        /*game.font.getData().setScale(3.5f);
-        //game.font.getData().fontFile(Gdx.files.internal("fonts/black.ttf"));
-        game.font.draw(game.batch, "I - Instructions\n" +
-                "B - Ballroom\n"+
-                "L - Library(todo)\n", graphics.getWidth()/8f, graphics.getHeight()/1.08f);*/
-        tui.font.getData().setScale(4);
         tui.draw(game.batch, 1f);
         game.batch.end();
 
         // draw border
         border.begin(ShapeRenderer.ShapeType.Line);
-        border.setColor(Color.WHITE);
-        border.rect(graphics.getWidth()/40f, graphics.getHeight()/50f, 1010,1000);
+        border.setColor(Color.CORAL);
+        border.rect(graphics.getWidth()/40f, graphics.getHeight()/50f, 1010,2000);
         border.end();
     }
     @Override

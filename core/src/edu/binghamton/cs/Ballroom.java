@@ -4,13 +4,32 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
+import java.util.ArrayList;
 
 public class Ballroom extends ScreenAdapter {
     HappyBirthday game;
+    TextUI tui;
+    ShapeRenderer shapeRenderer;
+    ArrayList<Object> objects;
+
+    float shapeX;
+    float shapeY;
 
     public Ballroom(HappyBirthday game){
         this.game = game;
+        this.shapeRenderer = game.shapeRenderer;
+        this.shapeX = 200;
+        this.shapeY = 100;
+
+        objects = new ArrayList<Object>();
+        objects.add(new Object(10f, 10f, "raw/lemon.png"));
+        //objects.add(new Object(10f, 10f, "raw/piano.png"));
+        //objects.add(new Object(10f, 10f, "raw/chair.png"));
+
     }
 
     @Override
@@ -21,6 +40,22 @@ public class Ballroom extends ScreenAdapter {
                 if (keyCode == Input.Keys.I) {
                     game.setScreen(new InstructionScreen(game));
                 }
+                if(Gdx.input.isTouched()){
+                    shapeX = Gdx.input.getX();
+                    shapeY = Gdx.graphics.getHeight() - Gdx.input.getY();
+                }
+                if(keyCode == Input.Keys.UP){
+                    shapeY += 15;
+                }
+                if(keyCode == Input.Keys.DOWN){
+                    shapeY -= 15;
+                }
+                if(keyCode == Input.Keys.RIGHT){
+                    shapeX += 15;
+                }
+                if(keyCode == Input.Keys.LEFT){
+                    shapeX -= 15;
+                }
                 return true;
             }
         });
@@ -28,11 +63,18 @@ public class Ballroom extends ScreenAdapter {
 
     @Override
     public void render(float delta){
-        Gdx.gl.glClearColor(.25f, .5f, 1, 1);
+        Gdx.gl.glClearColor(153f/255f, 204f/255f, 255f/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(Color.GOLD);
+        shapeRenderer.circle(shapeX, shapeY, 50);
+        shapeRenderer.end();
+
         game.batch.begin();
-        game.font.getData().setScale(3);
-        game.font.draw(game.batch, "A ballroom", Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()/4);
+        for (Object o : objects){
+            o.render(game.batch);
+        }
         game.batch.end();
     }
 
