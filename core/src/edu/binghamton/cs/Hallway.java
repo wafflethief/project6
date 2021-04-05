@@ -6,26 +6,29 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.util.ArrayList;
 
 import static com.badlogic.gdx.Gdx.graphics;
 
-public class Ballroom extends ScreenAdapter {
+public class Hallway extends ScreenAdapter {
     HappyBirthday game;
     TextUI tui;
     ShapeRenderer shapeRenderer;
     ArrayList<Object> objects;
     CollisionRect rect;
-    //String text;
+    Texture texture;
 
     float shapeX;
     float shapeY;
     Object player;
 
-    public Ballroom(HappyBirthday game){
+    public Hallway(HappyBirthday game){
         this.game = game;
+        texture = new Texture("raw/blue_white_tile.jpg");
+
         this.shapeRenderer = game.shapeRenderer;
         this.shapeX = 200;
         this.shapeY = 100;
@@ -54,17 +57,17 @@ public class Ballroom extends ScreenAdapter {
                     player.y += 20;
                     player.update();
                 }
-                else if(keyCode == Input.Keys.DOWN){
+                if(keyCode == Input.Keys.DOWN){
                     //shapeY -= 15;
                     player.y -= 20;
                     player.update();
                 }
-                else if(keyCode == Input.Keys.RIGHT){
+                if(keyCode == Input.Keys.RIGHT){
                     //shapeX += 20;
                     player.x += 20;
                     player.update();
                 }
-                else if(keyCode == Input.Keys.LEFT){
+                if(keyCode == Input.Keys.LEFT){
                     //shapeX -= 20;
                     player.x -= 20;
                     player.update();
@@ -78,23 +81,14 @@ public class Ballroom extends ScreenAdapter {
     public void render(float delta){
         Gdx.gl.glClearColor(153f/255f, 204f/255f, 255f/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        /*
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(Color.GOLD);
-        shapeRenderer.circle(shapeX, shapeY, 50);
-        shapeRenderer.end();*/
 
-        objects.add(new Object(800f, 1700f, "raw/lemon.png", 12f,20f, "a lemon"));
-        objects.add(new Object(770f, 1700f, "raw/piano.png", 4f, 6f, "a piano"));
+        objects.add(new Object(0f, 0f, "raw/apollo-sculpture.png", 12f,20f, "a statue of apollo"));
+        objects.add(new Object(770f, 1700f, "raw/statue-classical.png", 4f, 6f, "another statue"));
         //objects.add(new Object(10f, 10f, "raw/chair.png"));
-
-        float textWidth = graphics.getWidth()/15f;
-        float textHeight =  graphics.getHeight()/10f;
-        tui = new TextUI("rubik/Rubik-Black.ttf");
-        //tui.setFields(text, 45, 0.25f, Color.WHITE, Color.CORAL, 1f, 1f, textWidth, textHeight);
 
         game.batch.begin();
         //player = new Object(shapeX, shapeY, "raw/dog_monopoly.png", 10f, 20f, "it's you");
+        game.batch.draw(texture, 0, 0);
         player.render(game.batch);
 
         for (Object o : objects){
@@ -102,8 +96,12 @@ public class Ballroom extends ScreenAdapter {
         }
         for (Object o : objects){
             if(o.getCollisionRect().collidesWith(player.getCollisionRect())){
-                tui.setFields(o.getDescription(), 45, 0.25f, Color.WHITE, Color.CORAL, 1f, 1f, textWidth, textHeight);
-                tui.draw(game.batch,1f);
+                //o.remove();
+                String text = o.description;
+                float textWidth = graphics.getWidth()/15f;
+                float textHeight =  graphics.getHeight()/1.05f;
+                tui.setFields(text, 40, 0.25f, Color.WHITE, Color.CORAL, 1f, 1f, textWidth, textHeight);
+                tui.draw(game.batch, 1f);
             }
         }
         game.batch.end();

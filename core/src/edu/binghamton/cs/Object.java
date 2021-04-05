@@ -16,20 +16,29 @@ public class Object {
     float xSize, ySize;
     int width, height;
     CollisionRect rect;
+    String description;
 
-    public Object(float x, float y, String imgFile, float xSize, float ySize){
+    public Object(){
+
+    }
+    public Object(float x, float y, String imgFile, float xSize, float ySize, String des){
         this.x = x;
         this.y = y;
         this.texture = new Texture(imgFile);
         this.xSize = xSize;
         this.ySize = ySize;
         this.rect = new CollisionRect(x, y, WIDTH, HEIGHT);
+        this.description = des;
     }
     public void update(){
         this.rect.move(x, y);
     }
     public void render(SpriteBatch batch){
         batch.draw(texture, x, y, Gdx.graphics.getWidth()/xSize, Gdx.graphics.getHeight()/ySize);
+    }
+
+    public String getDescription(){
+        return description;
     }
 
     public CollisionRect getCollisionRect(){

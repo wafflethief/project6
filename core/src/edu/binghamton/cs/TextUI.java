@@ -19,13 +19,6 @@ public class TextUI extends Actor {
         this.font = new BitmapFont();
         generator = new FreeTypeFontGenerator(Gdx.files.internal(fontFile));
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        /*parameter.size = 35;
-        parameter.borderWidth = 0.5f;
-        parameter.borderColor = Color.WHITE;
-        parameter.color = Color.CHARTREUSE;
-        this.font = generator.generateFont(parameter);
-        generator.dispose();
-        this.font.getData().setScale(0.4f, 0.4f);*/
     }
 
     public void setFields(String text, int size, float borderWidth, Color borderColor,

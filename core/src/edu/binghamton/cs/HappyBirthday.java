@@ -30,7 +30,6 @@ public class HappyBirthday extends Game {//extends ApplicationAdapter {
 	Texture img;
 	BitmapFont font;
 	AssetManager manager;
-	MyTextInputListener listener;
 	TextField textField;
 	Music rainSound;
 	ShapeRenderer shapeRenderer;
@@ -46,25 +45,14 @@ public class HappyBirthday extends Game {//extends ApplicationAdapter {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		font = new BitmapFont();
-		/*
-		generator = new FreeTypeFontGenerator(Gdx.files.internal("rubik/Rubik-Black.ttf"));
-		parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-		parameter.size = 35;
-		parameter.borderWidth = 0.5f;
-		parameter.borderColor = Color.WHITE;
-		parameter.color = Color.CHARTREUSE;
-		this.font = generator.generateFont(parameter);
-		generator.dispose();
-		this.text = text;
-		this.font.getData().setScale(0.4f, 0.4f);
-		*/
 		manager = new AssetManager();
 		shapeRenderer = new ShapeRenderer();
 
 		rainSound = Gdx.audio.newMusic(Gdx.files.internal("raw/zapsplat_rain.mp3"));
 		rainSound.setLooping(true);
 
-		setScreen(new InstructionScreen(HappyBirthday.this));
+		// if pressed "Play", then go straight to instruction screen
+		setScreen(new SplashScreen(HappyBirthday.this));
 	}
 
 	@Override

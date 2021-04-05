@@ -39,6 +39,9 @@ public class InstructionScreen extends ScreenAdapter {
                 if(keyCode == Input.Keys.B){
                     game.setScreen(new Ballroom(game));
                 }
+                if(keyCode == Input.Keys.H){
+                    game.setScreen(new Hallway(game));
+                }
                 return true;
             }
         });
@@ -52,7 +55,9 @@ public class InstructionScreen extends ScreenAdapter {
         //game.rainSound.play();
 
         // TODO: move all the screen text to text files and read in...
-        text = "\nInstructions: \n" +
+        // B will take you to a ballroom
+        //
+        text = "\nCommands: \n" +
                 "B - Ballroom\n" +
                 "L - Library(todo)";
         float textWidth = graphics.getWidth()/15f;
