@@ -35,4 +35,8 @@ public class Object {
     public CollisionRect getCollisionRect(){
         return this.rect;
     }
+
+    public void remove(){
+        texture.dispose();
+    }
 }

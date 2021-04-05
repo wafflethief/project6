@@ -18,15 +18,16 @@ public class Ballroom extends ScreenAdapter {
 
     float shapeX;
     float shapeY;
+    Object player;
 
     public Ballroom(HappyBirthday game){
         this.game = game;
         this.shapeRenderer = game.shapeRenderer;
         this.shapeX = 200;
         this.shapeY = 100;
+        player = new Object(shapeX, shapeY, "raw/dog_monopoly.png", 10f, 20f);
 
         objects = new ArrayList<Object>();
-
 
     }
 
@@ -63,19 +64,26 @@ public class Ballroom extends ScreenAdapter {
     public void render(float delta){
         Gdx.gl.glClearColor(153f/255f, 204f/255f, 255f/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        /*
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.GOLD);
         shapeRenderer.circle(shapeX, shapeY, 50);
-        shapeRenderer.end();
+        shapeRenderer.end();*/
 
         objects.add(new Object(800f, 1700f, "raw/lemon.png", 12f,20f));
-        objects.add(new Object(750f, 1700f, "raw/piano.png", 4f, 6f));
+        objects.add(new Object(770f, 1700f, "raw/piano.png", 4f, 6f));
         //objects.add(new Object(10f, 10f, "raw/chair.png"));
+
         game.batch.begin();
+        player.render(game.batch);
 
         for (Object o : objects){
             o.render(game.batch);
+        }
+        for (Object o : objects){
+            if(o.getCollisionRect().collidesWith(player.getCollisionRect())){
+                o.remove();
+            }
         }
         game.batch.end();
     }
