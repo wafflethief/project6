@@ -97,13 +97,21 @@ public class Hallway extends ScreenAdapter {
         for (Object o : objects){
             if(o.getCollisionRect().collidesWith(player.getCollisionRect())){
                 //o.remove();
-                String text = o.description;
+                /*String text = o.description;
                 float textWidth = graphics.getWidth()/15f;
                 float textHeight =  graphics.getHeight()/1.05f;
                 tui.setFields(text, 40, 0.25f, Color.WHITE, Color.CORAL, 1f, 1f, textWidth, textHeight);
-                tui.draw(game.batch, 1f);
+                tui.draw(game.batch, 1f);*/
             }
+            /*else{
+                o.render(game.batch);
+            }*/
         }
+        String text = objects.get(0).getDescription();
+        float textWidth = graphics.getWidth()/15f;
+        float textHeight =  graphics.getHeight()/1.05f;
+        tui.setFields(text, 40, 0.25f, Color.WHITE, Color.CORAL, 1f, 1f, textWidth, textHeight);
+        tui.draw(game.batch, 1f);
         game.batch.end();
     }
 

@@ -91,10 +91,13 @@ public class Ballroom extends ScreenAdapter {
         float textWidth = graphics.getWidth()/15f;
         float textHeight =  graphics.getHeight()/10f;
         tui = new TextUI("rubik/Rubik-Black.ttf");
-        //tui.setFields(text, 45, 0.25f, Color.WHITE, Color.CORAL, 1f, 1f, textWidth, textHeight);
+
+        String text = "meeee";
+        tui.setFields(text, 40, 0.25f, Color.WHITE, Color.CORAL, 1f, 1f, textWidth, textHeight);
 
         game.batch.begin();
         //player = new Object(shapeX, shapeY, "raw/dog_monopoly.png", 10f, 20f, "it's you");
+        tui.draw(game.batch, 1f);
         player.render(game.batch);
 
         for (Object o : objects){

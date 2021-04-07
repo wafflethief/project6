@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 // any item in the room...
 public class Object {
-    public static final int WIDTH = 3;
+    public static final int WIDTH = 10;
     public static final int HEIGHT = 4;
 
     private Texture texture;

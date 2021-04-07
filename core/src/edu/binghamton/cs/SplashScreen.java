@@ -30,7 +30,7 @@ public class SplashScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(new InputAdapter() {
+        /*Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean keyDown(int keyCode) {
                 if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {
@@ -38,11 +38,15 @@ public class SplashScreen extends ScreenAdapter {
                 }
                 return true;
             }
-        });
+        });*/
     }
 
     @Override
     public void render(float delta) {
+        if(Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)){
+            game.setScreen(new InstructionScreen(game));
+        }
+
         Gdx.gl.glClearColor(.25f, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         text = "Welcome. Press enter to play";
